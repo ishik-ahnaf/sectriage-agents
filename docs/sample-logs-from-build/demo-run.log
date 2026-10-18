@@ -1,0 +1,162 @@
+13:13:51.535 | INFO    | orchestrator | CONVERSATION_START | conv=conv-A-001 max_steps=20 max_revisions=3 timeout_s=1.0
+13:13:51.536 | INFO    | orchestrator | ROUTED             | msg=b22947a2 step=1 from=orchestrator to=classifier intent=classify_alert alert=A-001
+13:13:51.536 | INFO    | classifier   | RECEIVED           | msg=b22947a2 step=1 from=orchestrator to=classifier intent=classify_alert alert=A-001
+13:13:51.536 | INFO    | classifier   | SENT               | msg=95cab7b1 to=validator intent=classification_result alert=A-001
+13:13:51.537 | INFO    | orchestrator | ROUTED             | msg=95cab7b1 step=2 from=classifier to=validator intent=classification_result alert=A-001
+13:13:51.537 | INFO    | validator    | RECEIVED           | msg=95cab7b1 step=2 from=classifier to=validator intent=classification_result alert=A-001
+13:13:51.537 | INFO    | validator    | SENT               | msg=2d21de8c to=orchestrator intent=validation_result alert=A-001
+13:13:51.537 | INFO    | orchestrator | ROUTED             | msg=2d21de8c step=3 from=validator to=orchestrator intent=validation_result alert=A-001
+13:13:51.537 | INFO    | orchestrator | FINAL              | alert=A-001 verdict=approved category=phishing severity=high
+13:13:51.537 | INFO    | orchestrator | CONVERSATION_END   | alert=A-001 status=approved steps=3 revisions=0 retries=0 elapsed_s=0.0
+13:13:51.537 | INFO    | orchestrator | CONVERSATION_START | conv=conv-A-002 max_steps=20 max_revisions=3 timeout_s=1.0
+13:13:51.537 | INFO    | orchestrator | ROUTED             | msg=da9808f2 step=1 from=orchestrator to=classifier intent=classify_alert alert=A-002
+13:13:51.538 | INFO    | classifier   | RECEIVED           | msg=da9808f2 step=1 from=orchestrator to=classifier intent=classify_alert alert=A-002
+13:13:51.538 | INFO    | classifier   | SENT               | msg=2d7a0ea4 to=validator intent=classification_result alert=A-002
+13:13:51.538 | INFO    | orchestrator | ROUTED             | msg=2d7a0ea4 step=2 from=classifier to=validator intent=classification_result alert=A-002
+13:13:51.538 | INFO    | validator    | RECEIVED           | msg=2d7a0ea4 step=2 from=classifier to=validator intent=classification_result alert=A-002
+13:13:51.538 | INFO    | validator    | SENT               | msg=4c96052c to=classifier intent=revise_classification alert=A-002
+13:13:51.539 | INFO    | orchestrator | ROUTED             | msg=4c96052c step=3 from=validator to=classifier intent=revise_classification alert=A-002
+13:13:51.539 | INFO    | orchestrator | REVISION_ROUND     | alert=A-002 round=1 issues="severity 'medium' too low for brute_force (count=57); minimum is 'high'"
+13:13:51.539 | INFO    | classifier   | RECEIVED           | msg=4c96052c step=3 from=validator to=classifier intent=revise_classification alert=A-002
+13:13:51.539 | INFO    | classifier   | SENT               | msg=a63f1ca2 to=validator intent=classification_result alert=A-002
+13:13:51.539 | INFO    | orchestrator | ROUTED             | msg=a63f1ca2 step=4 from=classifier to=validator intent=classification_result alert=A-002
+13:13:51.539 | INFO    | validator    | RECEIVED           | msg=a63f1ca2 step=4 from=classifier to=validator intent=classification_result alert=A-002
+13:13:51.539 | INFO    | validator    | SENT               | msg=40d00892 to=orchestrator intent=validation_result alert=A-002
+13:13:51.539 | INFO    | orchestrator | ROUTED             | msg=40d00892 step=5 from=validator to=orchestrator intent=validation_result alert=A-002
+13:13:51.539 | INFO    | orchestrator | FINAL              | alert=A-002 verdict=approved category=brute_force severity=high
+13:13:51.539 | INFO    | orchestrator | CONVERSATION_END   | alert=A-002 status=approved steps=5 revisions=1 retries=0 elapsed_s=0.0
+13:13:51.539 | INFO    | orchestrator | CONVERSATION_START | conv=conv-A-003 max_steps=20 max_revisions=3 timeout_s=1.0
+13:13:51.539 | INFO    | orchestrator | ROUTED             | msg=72bd612d step=1 from=orchestrator to=classifier intent=classify_alert alert=A-003
+13:13:51.540 | INFO    | classifier   | RECEIVED           | msg=72bd612d step=1 from=orchestrator to=classifier intent=classify_alert alert=A-003
+13:13:51.540 | WARNING | classifier   | FAULT_INJECTED     | alert=A-003 fault=timeout
+13:13:52.540 | ERROR   | orchestrator | TIMEOUT            | agent=classifier alert=A-003 attempt=1/3 detail="no reply within 1.0s"
+13:13:52.540 | WARNING | classifier   | STALE_REPLY_DROPPED | msg=72bd612d alert=A-003
+13:13:52.540 | WARNING | orchestrator | RETRY              | agent=classifier alert=A-003 msg=72bd612d
+13:13:52.540 | INFO    | classifier   | RECEIVED           | msg=72bd612d step=1 from=orchestrator to=classifier intent=classify_alert alert=A-003
+13:13:52.541 | INFO    | classifier   | SENT               | msg=b42f5a84 to=validator intent=classification_result alert=A-003
+13:13:52.541 | INFO    | orchestrator | ROUTED             | msg=b42f5a84 step=2 from=classifier to=validator intent=classification_result alert=A-003
+13:13:52.541 | INFO    | validator    | RECEIVED           | msg=b42f5a84 step=2 from=classifier to=validator intent=classification_result alert=A-003
+13:13:52.541 | INFO    | validator    | SENT               | msg=e1a46a05 to=orchestrator intent=validation_result alert=A-003
+13:13:52.541 | INFO    | orchestrator | ROUTED             | msg=e1a46a05 step=3 from=validator to=orchestrator intent=validation_result alert=A-003
+13:13:52.541 | INFO    | orchestrator | FINAL              | alert=A-003 verdict=approved category=malware severity=critical
+13:13:52.541 | INFO    | orchestrator | CONVERSATION_END   | alert=A-003 status=approved steps=3 revisions=0 retries=1 elapsed_s=1.0
+13:13:52.541 | INFO    | orchestrator | CONVERSATION_START | conv=conv-A-004 max_steps=20 max_revisions=3 timeout_s=1.0
+13:13:52.542 | INFO    | orchestrator | ROUTED             | msg=9d9c0bc0 step=1 from=orchestrator to=classifier intent=classify_alert alert=A-004
+13:13:52.542 | INFO    | classifier   | RECEIVED           | msg=9d9c0bc0 step=1 from=orchestrator to=classifier intent=classify_alert alert=A-004
+13:13:52.542 | WARNING | classifier   | FAULT_INJECTED     | alert=A-004 fault=malformed_json
+13:13:52.542 | INFO    | classifier   | SENT               | raw="Sure! Here is my analysis: this looks like a port scan, seve" alert=A-004
+13:13:52.542 | ERROR   | orchestrator | INVALID_OUTPUT     | agent=classifier alert=A-004 attempt=1/3 detail="output is not valid JSON (Expecting value): 'Sure! Here is my analysis: this ..."
+13:13:52.543 | WARNING | orchestrator | RETRY              | agent=classifier alert=A-004 msg=9d9c0bc0
+13:13:52.543 | INFO    | classifier   | RECEIVED           | msg=9d9c0bc0 step=1 from=orchestrator to=classifier intent=classify_alert alert=A-004
+13:13:52.543 | INFO    | classifier   | SENT               | msg=1ef9b6c6 to=validator intent=classification_result alert=A-004
+13:13:52.543 | INFO    | orchestrator | ROUTED             | msg=1ef9b6c6 step=2 from=classifier to=validator intent=classification_result alert=A-004
+13:13:52.544 | INFO    | validator    | RECEIVED           | msg=1ef9b6c6 step=2 from=classifier to=validator intent=classification_result alert=A-004
+13:13:52.544 | INFO    | validator    | SENT               | msg=414831a3 to=orchestrator intent=validation_result alert=A-004
+13:13:52.544 | INFO    | orchestrator | ROUTED             | msg=414831a3 step=3 from=validator to=orchestrator intent=validation_result alert=A-004
+13:13:52.544 | INFO    | orchestrator | FINAL              | alert=A-004 verdict=approved category=port_scan severity=low
+13:13:52.544 | INFO    | orchestrator | CONVERSATION_END   | alert=A-004 status=approved steps=3 revisions=0 retries=1 elapsed_s=0.0
+13:13:52.544 | INFO    | orchestrator | CONVERSATION_START | conv=conv-A-005 max_steps=20 max_revisions=3 timeout_s=1.0
+13:13:52.544 | INFO    | orchestrator | ROUTED             | msg=07eac249 step=1 from=orchestrator to=classifier intent=classify_alert alert=A-005
+13:13:52.544 | INFO    | classifier   | RECEIVED           | msg=07eac249 step=1 from=orchestrator to=classifier intent=classify_alert alert=A-005
+13:13:52.544 | WARNING | classifier   | FAULT_INJECTED     | alert=A-005 fault=bad_receiver
+13:13:52.544 | INFO    | classifier   | SENT               | msg=2ce52acc to=validater intent=classification_result alert=A-005
+13:13:52.545 | ERROR   | orchestrator | ROUTE_ERROR        | msg=2ce52acc step=2 from=classifier to=validater intent=classification_result alert=A-005 reason="unknown receiver 'validater'"
+13:13:52.545 | INFO    | orchestrator | ROUTED             | msg=8ba0829e step=3 from=orchestrator to=classifier intent=route_error alert=A-005
+13:13:52.545 | INFO    | classifier   | RECEIVED           | msg=8ba0829e step=3 from=orchestrator to=classifier intent=route_error alert=A-005
+13:13:52.545 | INFO    | classifier   | SENT               | msg=027f6274 to=validator intent=classification_result alert=A-005
+13:13:52.545 | INFO    | orchestrator | ROUTED             | msg=027f6274 step=4 from=classifier to=validator intent=classification_result alert=A-005
+13:13:52.545 | INFO    | validator    | RECEIVED           | msg=027f6274 step=4 from=classifier to=validator intent=classification_result alert=A-005
+13:13:52.545 | INFO    | validator    | SENT               | msg=e6c8afc5 to=orchestrator intent=validation_result alert=A-005
+13:13:52.545 | INFO    | orchestrator | ROUTED             | msg=e6c8afc5 step=5 from=validator to=orchestrator intent=validation_result alert=A-005
+13:13:52.545 | INFO    | orchestrator | FINAL              | alert=A-005 verdict=approved category=benign severity=low
+13:13:52.545 | INFO    | orchestrator | CONVERSATION_END   | alert=A-005 status=approved steps=5 revisions=0 retries=0 elapsed_s=0.0
+13:13:52.545 | INFO    | orchestrator | CONVERSATION_START | conv=conv-A-006 max_steps=20 max_revisions=3 timeout_s=1.0
+13:13:52.546 | INFO    | orchestrator | ROUTED             | msg=8189aeb1 step=1 from=orchestrator to=classifier intent=classify_alert alert=A-006
+13:13:52.546 | INFO    | classifier   | RECEIVED           | msg=8189aeb1 step=1 from=orchestrator to=classifier intent=classify_alert alert=A-006
+13:13:52.546 | WARNING | classifier   | FAULT_INJECTED     | alert=A-006 fault=hallucinated_indicator
+13:13:52.546 | INFO    | classifier   | SENT               | msg=980f4b5e to=validator intent=classification_result alert=A-006
+13:13:52.546 | INFO    | orchestrator | ROUTED             | msg=980f4b5e step=2 from=classifier to=validator intent=classification_result alert=A-006
+13:13:52.546 | INFO    | validator    | RECEIVED           | msg=980f4b5e step=2 from=classifier to=validator intent=classification_result alert=A-006
+13:13:52.546 | INFO    | validator    | SENT               | msg=d9adf6f5 to=classifier intent=revise_classification alert=A-006
+13:13:52.546 | INFO    | orchestrator | ROUTED             | msg=d9adf6f5 step=3 from=validator to=classifier intent=revise_classification alert=A-006
+13:13:52.546 | INFO    | orchestrator | REVISION_ROUND     | alert=A-006 round=1 issues="ungrounded indicator(s) not in source: 198.51.100.200 | severity 'medium' too..."
+13:13:52.546 | INFO    | classifier   | RECEIVED           | msg=d9adf6f5 step=3 from=validator to=classifier intent=revise_classification alert=A-006
+13:13:52.546 | INFO    | classifier   | SENT               | msg=88fb079c to=validator intent=classification_result alert=A-006
+13:13:52.547 | INFO    | orchestrator | ROUTED             | msg=88fb079c step=4 from=classifier to=validator intent=classification_result alert=A-006
+13:13:52.547 | INFO    | validator    | RECEIVED           | msg=88fb079c step=4 from=classifier to=validator intent=classification_result alert=A-006
+13:13:52.547 | INFO    | validator    | SENT               | msg=c8019825 to=orchestrator intent=validation_result alert=A-006
+13:13:52.547 | INFO    | orchestrator | ROUTED             | msg=c8019825 step=5 from=validator to=orchestrator intent=validation_result alert=A-006
+13:13:52.547 | INFO    | orchestrator | FINAL              | alert=A-006 verdict=approved category=data_exfiltration severity=high
+13:13:52.547 | INFO    | orchestrator | CONVERSATION_END   | alert=A-006 status=approved steps=5 revisions=1 retries=0 elapsed_s=0.0
+13:13:52.547 | INFO    | orchestrator | CONVERSATION_START | conv=conv-A-007 max_steps=20 max_revisions=3 timeout_s=1.0
+13:13:52.547 | INFO    | orchestrator | ROUTED             | msg=d825a3dd step=1 from=orchestrator to=classifier intent=classify_alert alert=A-007
+13:13:52.547 | INFO    | classifier   | RECEIVED           | msg=d825a3dd step=1 from=orchestrator to=classifier intent=classify_alert alert=A-007
+13:13:52.547 | WARNING | classifier   | FAULT_INJECTED     | alert=A-007 fault=stubborn
+13:13:52.547 | INFO    | classifier   | SENT               | msg=f5757563 to=validator intent=classification_result alert=A-007
+13:13:52.547 | ERROR   | orchestrator | INVALID_OUTPUT     | agent=classifier alert=A-007 attempt=1/3 detail="content.category='recon_activity' not in ['brute_force', 'phishing', 'malware..."
+13:13:52.548 | WARNING | orchestrator | RETRY              | agent=classifier alert=A-007 msg=d825a3dd
+13:13:52.548 | INFO    | classifier   | RECEIVED           | msg=d825a3dd step=1 from=orchestrator to=classifier intent=classify_alert alert=A-007
+13:13:52.548 | WARNING | classifier   | FAULT_INJECTED     | alert=A-007 fault=stubborn
+13:13:52.548 | INFO    | classifier   | SENT               | msg=eb0ac146 to=validator intent=classification_result alert=A-007
+13:13:52.548 | ERROR   | orchestrator | INVALID_OUTPUT     | agent=classifier alert=A-007 attempt=2/3 detail="content.category='recon_activity' not in ['brute_force', 'phishing', 'malware..."
+13:13:52.548 | WARNING | orchestrator | RETRY              | agent=classifier alert=A-007 msg=d825a3dd
+13:13:52.548 | INFO    | classifier   | RECEIVED           | msg=d825a3dd step=1 from=orchestrator to=classifier intent=classify_alert alert=A-007
+13:13:52.548 | WARNING | classifier   | FAULT_INJECTED     | alert=A-007 fault=stubborn
+13:13:52.548 | INFO    | classifier   | SENT               | msg=c6daf5fa to=validator intent=classification_result alert=A-007
+13:13:52.548 | ERROR   | orchestrator | INVALID_OUTPUT     | agent=classifier alert=A-007 attempt=3/3 detail="content.category='recon_activity' not in ['brute_force', 'phishing', 'malware..."
+13:13:52.548 | WARNING | orchestrator | FALLBACK           | alert=A-007 reason=invalid_output_retries_exhausted action=needs_human_review
+13:13:52.548 | INFO    | orchestrator | CONVERSATION_END   | alert=A-007 status=fallback steps=1 revisions=0 retries=2 elapsed_s=0.0
+13:13:52.548 | INFO    | orchestrator | CONVERSATION_START | conv=conv-A-008 max_steps=20 max_revisions=3 timeout_s=1.0
+13:13:52.548 | INFO    | orchestrator | ROUTED             | msg=c733053b step=1 from=orchestrator to=classifier intent=classify_alert alert=A-008
+13:13:52.549 | INFO    | classifier   | RECEIVED           | msg=c733053b step=1 from=orchestrator to=classifier intent=classify_alert alert=A-008
+13:13:52.549 | WARNING | classifier   | FAULT_INJECTED     | alert=A-008 fault=wrong_category
+13:13:52.549 | INFO    | classifier   | SENT               | msg=d82c97b1 to=validator intent=classification_result alert=A-008
+13:13:52.549 | INFO    | orchestrator | ROUTED             | msg=d82c97b1 step=2 from=classifier to=validator intent=classification_result alert=A-008
+13:13:52.549 | INFO    | validator    | RECEIVED           | msg=d82c97b1 step=2 from=classifier to=validator intent=classification_result alert=A-008
+13:13:52.549 | INFO    | validator    | SENT               | msg=d2ab76d7 to=classifier intent=revise_classification alert=A-008
+13:13:52.549 | INFO    | orchestrator | ROUTED             | msg=d2ab76d7 step=3 from=validator to=classifier intent=revise_classification alert=A-008
+13:13:52.549 | INFO    | orchestrator | REVISION_ROUND     | alert=A-008 round=1 issues="category 'phishing' contradicts alert text (looks like 'port_scan')"
+13:13:52.549 | INFO    | classifier   | RECEIVED           | msg=d2ab76d7 step=3 from=validator to=classifier intent=revise_classification alert=A-008
+13:13:52.550 | INFO    | classifier   | SENT               | msg=ff8d1508 to=validator intent=classification_result alert=A-008
+13:13:52.550 | INFO    | orchestrator | ROUTED             | msg=ff8d1508 step=4 from=classifier to=validator intent=classification_result alert=A-008
+13:13:52.550 | INFO    | validator    | RECEIVED           | msg=ff8d1508 step=4 from=classifier to=validator intent=classification_result alert=A-008
+13:13:52.550 | INFO    | validator    | SENT               | msg=692ddc54 to=orchestrator intent=validation_result alert=A-008
+13:13:52.550 | INFO    | orchestrator | ROUTED             | msg=692ddc54 step=5 from=validator to=orchestrator intent=validation_result alert=A-008
+13:13:52.550 | INFO    | orchestrator | FINAL              | alert=A-008 verdict=approved category=port_scan severity=low
+13:13:52.550 | INFO    | orchestrator | CONVERSATION_END   | alert=A-008 status=approved steps=5 revisions=1 retries=0 elapsed_s=0.0
+13:13:52.550 | INFO    | orchestrator | CONVERSATION_START | conv=conv-A-009 max_steps=20 max_revisions=3 timeout_s=1.0
+13:13:52.550 | INFO    | orchestrator | ROUTED             | msg=2801383d step=1 from=orchestrator to=classifier intent=classify_alert alert=A-009
+13:13:52.550 | INFO    | classifier   | RECEIVED           | msg=2801383d step=1 from=orchestrator to=classifier intent=classify_alert alert=A-009
+13:13:52.550 | WARNING | classifier   | FAULT_INJECTED     | alert=A-009 fault=ignore_feedback
+13:13:52.550 | INFO    | classifier   | SENT               | msg=5b8038bf to=validator intent=classification_result alert=A-009
+13:13:52.551 | INFO    | orchestrator | ROUTED             | msg=5b8038bf step=2 from=classifier to=validator intent=classification_result alert=A-009
+13:13:52.551 | INFO    | validator    | RECEIVED           | msg=5b8038bf step=2 from=classifier to=validator intent=classification_result alert=A-009
+13:13:52.551 | INFO    | validator    | SENT               | msg=ac5420bf to=classifier intent=revise_classification alert=A-009
+13:13:52.551 | INFO    | orchestrator | ROUTED             | msg=ac5420bf step=3 from=validator to=classifier intent=revise_classification alert=A-009
+13:13:52.551 | INFO    | orchestrator | REVISION_ROUND     | alert=A-009 round=1 issues="severity 'medium' too low for brute_force (count=120); minimum is 'high'"
+13:13:52.551 | INFO    | classifier   | RECEIVED           | msg=ac5420bf step=3 from=validator to=classifier intent=revise_classification alert=A-009
+13:13:52.551 | WARNING | classifier   | FAULT_INJECTED     | alert=A-009 fault=ignore_feedback
+13:13:52.551 | INFO    | classifier   | SENT               | msg=f6013bb6 to=validator intent=classification_result alert=A-009
+13:13:52.551 | INFO    | orchestrator | ROUTED             | msg=f6013bb6 step=4 from=classifier to=validator intent=classification_result alert=A-009
+13:13:52.552 | INFO    | validator    | RECEIVED           | msg=f6013bb6 step=4 from=classifier to=validator intent=classification_result alert=A-009
+13:13:52.552 | INFO    | validator    | SENT               | msg=4cb99108 to=classifier intent=revise_classification alert=A-009
+13:13:52.552 | INFO    | orchestrator | ROUTED             | msg=4cb99108 step=5 from=validator to=classifier intent=revise_classification alert=A-009
+13:13:52.552 | INFO    | orchestrator | REVISION_ROUND     | alert=A-009 round=2 issues="severity 'medium' too low for brute_force (count=120); minimum is 'high'"
+13:13:52.552 | INFO    | classifier   | RECEIVED           | msg=4cb99108 step=5 from=validator to=classifier intent=revise_classification alert=A-009
+13:13:52.552 | WARNING | classifier   | FAULT_INJECTED     | alert=A-009 fault=ignore_feedback
+13:13:52.552 | INFO    | classifier   | SENT               | msg=13e15fae to=validator intent=classification_result alert=A-009
+13:13:52.552 | INFO    | orchestrator | ROUTED             | msg=13e15fae step=6 from=classifier to=validator intent=classification_result alert=A-009
+13:13:52.552 | INFO    | validator    | RECEIVED           | msg=13e15fae step=6 from=classifier to=validator intent=classification_result alert=A-009
+13:13:52.552 | INFO    | validator    | SENT               | msg=7b21fab8 to=classifier intent=revise_classification alert=A-009
+13:13:52.552 | INFO    | orchestrator | ROUTED             | msg=7b21fab8 step=7 from=validator to=classifier intent=revise_classification alert=A-009
+13:13:52.553 | INFO    | orchestrator | REVISION_ROUND     | alert=A-009 round=3 issues="severity 'medium' too low for brute_force (count=120); minimum is 'high'"
+13:13:52.553 | INFO    | classifier   | RECEIVED           | msg=7b21fab8 step=7 from=validator to=classifier intent=revise_classification alert=A-009
+13:13:52.553 | WARNING | classifier   | FAULT_INJECTED     | alert=A-009 fault=ignore_feedback
+13:13:52.553 | INFO    | classifier   | SENT               | msg=b8ffdbf1 to=validator intent=classification_result alert=A-009
+13:13:52.553 | INFO    | orchestrator | ROUTED             | msg=b8ffdbf1 step=8 from=classifier to=validator intent=classification_result alert=A-009
+13:13:52.553 | INFO    | validator    | RECEIVED           | msg=b8ffdbf1 step=8 from=classifier to=validator intent=classification_result alert=A-009
+13:13:52.553 | INFO    | validator    | SENT               | msg=e34adc21 to=classifier intent=revise_classification alert=A-009
+13:13:52.553 | INFO    | orchestrator | ROUTED             | msg=e34adc21 step=9 from=validator to=classifier intent=revise_classification alert=A-009
+13:13:52.553 | WARNING | orchestrator | MAX_ITERATIONS     | alert=A-009 revisions=3
+13:13:52.553 | WARNING | orchestrator | FALLBACK           | alert=A-009 reason=max_iterations_exceeded action=needs_human_review
+13:13:52.553 | INFO    | orchestrator | CONVERSATION_END   | alert=A-009 status=fallback steps=9 revisions=3 retries=0 elapsed_s=0.0
